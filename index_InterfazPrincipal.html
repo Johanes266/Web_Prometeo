@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Inversiones Prometeo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+      
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow: auto;
+            background: url(Diseño\ sin\ título\ \(28\).png) no-repeat center center fixed; 
+            background-size: cover; 
+            transition: 0.3s ease;
+        }
+
+        body::before {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            transition: 0.3s ease;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-screen p {
+            font-size: 24px;
+            color: rgb(255, 255, 255);
+        }
+
+        header {
+            background: rgba(170, 9, 9, 0.8);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex: 1;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a i {
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #ffdbdb;
+            transform: scale(1.1);
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 100px 20px;
+            color: white;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .hero-section h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .image-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        .image-card {
+            background-color: rgba(255, 255, 255, 0.89);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .image-card:hover {
+            transform: translateY(-10px) rotate(3deg);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .image-card h3 {
+            font-size: 24px;
+            margin: 15px 0;
+        }
+
+        .image-card p {
+            padding: 0 15px 15px;
+        }
+
+        .testimonials-section {
+            background: rgba(153, 153, 153, 0.7); 
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 8px; 
+        }
+        
+        .testimonials-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            
+            
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 20px;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: #0a0a0a;
+        }
+
+        .testimonial-card h4 {
+            font-weight: bold;
+            margin-top: 15px;
+            color: #000000;
+        }
+
+        footer {
+            background-color:rgba(170, 9, 9, 0.8);
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            margin-top: 30px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .search-container input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 8px 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            background-color: #9b0d0d;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .search-container button:hover {
+            background-color: #830808;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Pantalla de carga -->
+    <div class="loading-screen" id="loading-screen">
+        <p>Cargando...</p>
+    </div>
+
+    <header>
+        <div class="logo">PROMETEO</div>
+        <nav>
+            <a href="file:///C:/Users/Johanes%20Escobar/Desktop/Web%20Index/index.html#"><i class="fas fa-envelope"></i> Inicio</a>
+            <a href="#"><i class="fas fa-briefcase"></i> Servicios</a>
+            <a href="#"><i class="fas fa-users"></i> Sobre Nosotros</a>
+            <a href="file:///C:/Users/Johanes%20Escobar/Desktop/Contacto%20index/index.html"><i class="fas fa-envelope"></i> Contacto</a>
+        </nav>
+        <div class="search-container">
+            <input type="text" placeholder="Buscar...">
+            <button>Buscar</button>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <h1>Bienvenidos a Prometeo</h1>
+        <p>Somos líderes en el mercado avícola, comprometidos con la calidad, la sostenibilidad y el bienestar de nuestra comunidad. Descubre todo lo que tenemos para ofrecerte.</p>
+    </div>
+
+    <div class="image-section">
+        <div class="image-card">
+            <img src="Diseño sin título (26).png" alt="Calidad">
+            <h3>Calidad Garantizada</h3>
+            <p>Nos aseguramos de que cada producto cumpla con los más altos estándares de calidad, brindando confianza a nuestros clientes.</p>
+        </div>
+        <div class="image-card">
+            <img src="Diseño sin título (25).png" alt="Innovación">
+            <h3>Innovación Constante</h3>
+            <p>Adoptamos nuevas tecnologías y métodos sostenibles para mejorar continuamente nuestros procesos y productos.</p>
+        </div>
+        <div class="image-card">
+            <img src="Diseño sin título (26).png" alt="Sostenibilidad">
+            <h3>Compromiso Ambiental</h3>
+            <p>Trabajamos con un enfoque en la sostenibilidad, reduciendo nuestro impacto ambiental y promoviendo un futuro más verde.</p>
+        </div>
+    </div>
+
+   
+    <div class="testimonials-section">
+        <h2>Lo que dicen nuestros clientes</h2>
+        <div class="testimonial-card">
+            <p>"La experiencia con Prometeo ha sido excepcional. ¡Totalmente recomendados!"</p>
+            <h4>Juan Pérez</h4>
+        </div>
+        <div class="testimonial-card">
+            <p>"Sus productos son de la más alta calidad, nunca he tenido una queja."</p>
+            <h4>Maria Rodríguez</h4>
+        </div>
+        <div class="testimonial-card">
+            <p>"El servicio al cliente es increíble, siempre atentos a nuestras necesidades."</p>
+            <h4>Carlos García</h4>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Inversiones Prometeo. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById("loading-screen").classList.add("hidden");
+            }, 1000); 
+        };
+    </script>
+</body>
+</html>

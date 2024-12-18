@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Horarios - Prometeo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+       
+        body {
+            background: url(Diseño\ sin\ título\ \(28\).png) no-repeat center center fixed;
+            background-size: cover; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        
+        }
+
+        header {
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        .container {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .container h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #f8f8f8;
+        }
+
+        .container p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #f8f8f8;
+        }
+
+      
+        table {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        table th {
+            background: rgba(0, 0, 0, 0.8);
+            font-size: 18px;
+        }
+
+        table td {
+            background: rgba(0, 0, 0, 0.6);
+            font-size: 16px;
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        
+        .btn-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #af0707;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #af0707;
+        }
+
+        footer {
+            background-color: #af0707(255, 255, 255, 0.8);
+            text-align: center;
+            color: rgba(158, 6, 6, 0.8);
+            padding: 10px 20px;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #f1f1f1;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">PROMETEO</div>
+        <nav>
+            <header>
+                <div class="logo">PROMETEO</div>
+                <nav>
+                    <a href="operador.html"><i class="fas fa-home"></i> Inicio</a>
+                    <a href="horarios.html"><i class="fas fa-clock"></i> Horarios de los clientes</a>
+                    <a href="envios.html"><i class="fas fa-truck"></i> Programación de envíos</a>
+                    <a href="proveedores.html"><i class="fas fa-industry"></i> Proveedores</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Control de Horarios</h1>
+        <p>Gestiona los horarios de los trabajadores y clientes desde esta interfaz interactiva.</p>
+
+        <!-- Table -->
+        <table id="horarios-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Rol</th>
+                    <th>Horario</th>
+                    <th>Descanso</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Juan Pérez</td>
+                    <td>Operador</td>
+                    <td>08:00 AM - 04:00 PM</td>
+                    <td>12:00 PM - 12:30 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>María López</td>
+                    <td>Cliente</td>
+                    <td>10:00 AM - 02:00 PM</td>
+                    <td>12:30 PM - 01:00 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Carlos García</td>
+                    <td>Operador</td>
+                    <td>09:00 AM - 05:00 PM</td>
+                    <td>01:00 PM - 01:30 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ana Sánchez</td>
+                    <td>Operador</td>
+                    <td>08:00 AM - 04:00 PM</td>
+                    <td>12:30 PM - 01:00 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Javier Morales</td>
+                    <td>Cliente</td>
+                    <td>10:00 AM - 03:00 PM</td>
+                    <td>01:00 PM - 01:30 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lucía Martínez</td>
+                    <td>Operador</td>
+                    <td>07:00 AM - 03:00 PM</td>
+                    <td>11:00 AM - 11:30 AM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pedro Ruiz</td>
+                    <td>Operador</td>
+                    <td>10:00 AM - 06:00 PM</td>
+                    <td>02:00 PM - 02:30 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Isabel Gómez</td>
+                    <td>Cliente</td>
+                    <td>09:00 AM - 01:00 PM</td>
+                    <td>11:00 AM - 11:30 AM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tomás Herrera</td>
+                    <td>Operador</td>
+                    <td>08:00 AM - 04:00 PM</td>
+                    <td>12:00 PM - 12:30 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Laura Díaz</td>
+                    <td>Operador</td>
+                    <td>08:00 AM - 04:00 PM</td>
+                    <td>12:30 PM - 01:00 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ricardo Fernández</td>
+                    <td>Operador</td>
+                    <td>09:00 AM - 05:00 PM</td>
+                    <td>01:00 PM - 01:30 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Esther Pérez</td>
+                    <td>Cliente</td>
+                    <td>11:00 AM - 03:00 PM</td>
+                    <td>01:30 PM - 02:00 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Felipe Torres</td>
+                    <td>Cliente</td>
+                    <td>09:00 AM - 01:00 PM</td>
+                    <td>11:30 AM - 12:00 PM</td>
+                    <td>
+                        <button class="btn" onclick="editarFila(this)">Editar</button>
+                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Add New Worker Button -->
+        <div class="btn-container">
+            <button class="btn" onclick="añadirFila()">Añadir Trabajador</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Prometeo - <a href="#terminos">Términos y Condiciones</a></p>
+    </footer>
+
+    <script>
+        // Añadir fila nueva
+        function añadirFila() {
+            const table = document.getElementById('horarios-table').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td contenteditable="true">Nombre</td>
+                <td contenteditable="true">Rol</td>
+                <td contenteditable="true">Horario</td>
+                <td contenteditable="true">Descanso</td>
+                <td>
+                    <button class="btn" onclick="editarFila(this)">Editar</button>
+                    <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
+                </td>
+            `;
+        }
+
+        // Editar fila
+        function editarFila(btn) {
+            const row = btn.parentNode.parentNode;
+            const cells = row.getElementsByTagName('td');
+            const isEditing = row.classList.contains('editing');
+
+            if (isEditing) {
+                row.classList.remove('editing');
+                Array.from(cells).forEach(cell => {
+                    cell.setAttribute('contenteditable', 'false');
+                });
+                btn.innerText = 'Editar';
+            } else {
+                row.classList.add('editing');
+                Array.from(cells).forEach(cell => {
+                    cell.setAttribute('contenteditable', 'true');
+                });
+                btn.innerText = 'Guardar';
+            }
+        }
+
+        // Eliminar fila
+        function eliminarFila(btn) {
+            const row = btn.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</body>
+</html>

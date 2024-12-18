@@ -3,20 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control de Horarios - Prometeo</title>
+    <title>Prometeo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-       
-        body {
-            background: url(Diseño\ sin\ título\ \(28\).png) no-repeat center center fixed;
-            background-size: cover; 
-            font-family: Arial, sans-serif;
+        /* General Styles */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background:  rgba(170, 9, 9, 0.8);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            background: url(Diseño\ sin\ título\ \(28\).png) no-repeat center center fixed;
+            background-size: cover; 
+            transition: 0.3s ease; 
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+
+        body::before {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(168, 169, 170, 0.7);
+            z-index: -1;
+        }
+
         
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-screen p {
+            font-size: 24px;
+            color: rgb(255, 255, 255);
         }
 
         header {
+            background: rgba(170, 9, 9, 0.8);
             color: white;
             padding: 15px 20px;
             display: flex;
@@ -30,328 +77,209 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
+            margin-right: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex: 1;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 10px;
             font-size: 18px;
-            transition: color 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a i {
+            font-size: 18px;
         }
 
         nav a:hover {
-            color: #ffffff;
+            color: #ffdbdb;
+            transform: scale(1.1);
         }
 
-        .container {
-            padding: 30px;
-            text-align: center;
+        .search-container {
+            display: flex;
+            align-items: center;
         }
 
-        .container h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #f8f8f8;
-        }
-
-        .container p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            color: #f8f8f8;
-        }
-
-      
-        table {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto 30px;
-            border-collapse: collapse;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        table th, table td {
-            padding: 15px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        table th {
-            background: rgba(0, 0, 0, 0.8);
-            font-size: 18px;
-        }
-
-        table td {
-            background: rgba(0, 0, 0, 0.6);
+        .search-container input[type="text"] {
+            padding: 8px;
             font-size: 16px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
         }
 
-        table tr:last-child td {
-            border-bottom: none;
+        .search-container button {
+            padding: 8px 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            background-color: #9b0d0d;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .search-container button:hover {
+            background-color: #830808;
+        }
+
+       
+        .hero-section {
+            text-align: center;
+            padding: 100px 20px;
+            color: white;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .hero-section h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         
-        .btn-container {
-            text-align: center;
-            margin-bottom: 20px;
+        .role-selection {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px auto;
+            width: 90%;
+            max-width: 800px;
         }
 
-        .btn {
-            background-color: #af0707;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
+        .role-card {
+            background: rgba(34, 34, 34, 0.692);
+            border: 2px solid rgb(44, 44, 44);
+            padding: 20px 30px;
+            border-radius: 15px;
+            width: 40%;
             cursor: pointer;
-            margin: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #af0707;
-        }
-
-        footer {
-            background-color: #af0707(255, 255, 255, 0.8);
             text-align: center;
-            color: rgba(158, 6, 6, 0.8);
-            padding: 10px 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .role-card h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .role-card p {
+            font-size: 1.2rem;
+        }
+
+        .role-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .operator {
+            background: linear-gradient(135deg, #646464, #464646);
+        }
+
+        .client {
+            background: linear-gradient(135deg,#646464, #464646);
+        }
+
+       
+        footer {
+            background-color: rgba(170, 9, 9, 0.8);
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
             margin-top: 30px;
         }
 
         footer a {
-            color: #f1f1f1;
+            color: #ffffff;
             text-decoration: none;
         }
 
         footer a:hover {
             text-decoration: underline;
         }
+
+      
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <p>Cargando...</p>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="logo">PROMETEO</div>
         <nav>
-            <header>
-                <div class="logo">PROMETEO</div>
-                <nav>
-                    <a href="operador.html"><i class="fas fa-home"></i> Inicio</a>
-                    <a href="horarios.html"><i class="fas fa-clock"></i> Horarios de los clientes</a>
-                    <a href="envios.html"><i class="fas fa-truck"></i> Programación de envíos</a>
-                    <a href="proveedores.html"><i class="fas fa-industry"></i> Proveedores</a>
+            <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
+            <a href="#operador"><i class="fas fa-briefcase"></i> Operador</a>
+            <a href="#cliente"><i class="fas fa-users"></i> Cliente</a>
+            <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
         </nav>
+        <div class="search-container">
+            <input type="text" placeholder="Buscar...">
+            <button>Buscar</button>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <h1>Control de Horarios</h1>
-        <p>Gestiona los horarios de los trabajadores y clientes desde esta interfaz interactiva.</p>
+    <!-- Hero Section -->
+    <div class="hero-section" id="inicio">
+        <h1>Bienvenidos a Prometeo</h1>
+        <p>Somos una empresa líder en soluciones de gestión de recursos. ¡Elige tu rol para comenzar!</p>
+    </div>
 
-        <!-- Table -->
-        <table id="horarios-table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Rol</th>
-                    <th>Horario</th>
-                    <th>Descanso</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Juan Pérez</td>
-                    <td>Operador</td>
-                    <td>08:00 AM - 04:00 PM</td>
-                    <td>12:00 PM - 12:30 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>María López</td>
-                    <td>Cliente</td>
-                    <td>10:00 AM - 02:00 PM</td>
-                    <td>12:30 PM - 01:00 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Carlos García</td>
-                    <td>Operador</td>
-                    <td>09:00 AM - 05:00 PM</td>
-                    <td>01:00 PM - 01:30 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ana Sánchez</td>
-                    <td>Operador</td>
-                    <td>08:00 AM - 04:00 PM</td>
-                    <td>12:30 PM - 01:00 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Javier Morales</td>
-                    <td>Cliente</td>
-                    <td>10:00 AM - 03:00 PM</td>
-                    <td>01:00 PM - 01:30 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Lucía Martínez</td>
-                    <td>Operador</td>
-                    <td>07:00 AM - 03:00 PM</td>
-                    <td>11:00 AM - 11:30 AM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Pedro Ruiz</td>
-                    <td>Operador</td>
-                    <td>10:00 AM - 06:00 PM</td>
-                    <td>02:00 PM - 02:30 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Isabel Gómez</td>
-                    <td>Cliente</td>
-                    <td>09:00 AM - 01:00 PM</td>
-                    <td>11:00 AM - 11:30 AM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Tomás Herrera</td>
-                    <td>Operador</td>
-                    <td>08:00 AM - 04:00 PM</td>
-                    <td>12:00 PM - 12:30 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Laura Díaz</td>
-                    <td>Operador</td>
-                    <td>08:00 AM - 04:00 PM</td>
-                    <td>12:30 PM - 01:00 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ricardo Fernández</td>
-                    <td>Operador</td>
-                    <td>09:00 AM - 05:00 PM</td>
-                    <td>01:00 PM - 01:30 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Esther Pérez</td>
-                    <td>Cliente</td>
-                    <td>11:00 AM - 03:00 PM</td>
-                    <td>01:30 PM - 02:00 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Felipe Torres</td>
-                    <td>Cliente</td>
-                    <td>09:00 AM - 01:00 PM</td>
-                    <td>11:30 AM - 12:00 PM</td>
-                    <td>
-                        <button class="btn" onclick="editarFila(this)">Editar</button>
-                        <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- Add New Worker Button -->
-        <div class="btn-container">
-            <button class="btn" onclick="añadirFila()">Añadir Trabajador</button>
+    <!-- Role Selection -->
+    <div class="role-selection">
+        <div class="role-card operator" onclick="window.location.href='operador.html'">
+            <h2>Operador</h2>
+            <p>Gestiona horarios, proveedores y más</p>
+        </div>
+        <div class="role-card client" onclick="window.location.href='cliente.html'">
+            <h2>Cliente</h2>
+            <p>Accede a tus servicios personalizados</p>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Prometeo - <a href="#terminos">Términos y Condiciones</a></p>
+        <p>&copy; 2024 Prometeo. Todos los derechos reservados.</p>
+        <p><a href="#privacidad">Política de Privacidad</a> | <a href="#terminos">Términos de Uso</a></p>
     </footer>
 
     <script>
-        // Añadir fila nueva
-        function añadirFila() {
-            const table = document.getElementById('horarios-table').getElementsByTagName('tbody')[0];
-            const newRow = table.insertRow();
-            newRow.innerHTML = `
-                <td contenteditable="true">Nombre</td>
-                <td contenteditable="true">Rol</td>
-                <td contenteditable="true">Horario</td>
-                <td contenteditable="true">Descanso</td>
-                <td>
-                    <button class="btn" onclick="editarFila(this)">Editar</button>
-                    <button class="btn" onclick="eliminarFila(this)">Eliminar</button>
-                </td>
-            `;
-        }
-
-        // Editar fila
-        function editarFila(btn) {
-            const row = btn.parentNode.parentNode;
-            const cells = row.getElementsByTagName('td');
-            const isEditing = row.classList.contains('editing');
-
-            if (isEditing) {
-                row.classList.remove('editing');
-                Array.from(cells).forEach(cell => {
-                    cell.setAttribute('contenteditable', 'false');
-                });
-                btn.innerText = 'Editar';
-            } else {
-                row.classList.add('editing');
-                Array.from(cells).forEach(cell => {
-                    cell.setAttribute('contenteditable', 'true');
-                });
-                btn.innerText = 'Guardar';
-            }
-        }
-
-        // Eliminar fila
-        function eliminarFila(btn) {
-            const row = btn.parentNode.parentNode;
-            row.parentNode.removeChild(row);
-        }
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById("loading-screen").classList.add("hidden");
+            }, 1000); // Oculta la pantalla de carga después de 1 segundo
+        };
     </script>
 </body>
 </html>

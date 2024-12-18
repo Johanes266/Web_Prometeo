@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Operador - Prometeo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilo global */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: url(Diseño\ sin\ título\ \(28\).png) no-repeat center center fixed;
+            background-size: cover;
+            transition: 0.3s ease;
+        }
+
+        header {
+            background: rgba(170, 9, 9, 0.8);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex: 1;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffdbdb;
+            transform: scale(1.1);
+        }
+
+        .search-bar {
+            margin-left: auto;
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            width: 250px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 100px 20px;
+            color: white;
+        }
+
+        .hero-section h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        footer {
+            background-color: rgba(170, 9, 9, 0.8);
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #ffdbdb;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">PROMETEO</div>
+        <nav>
+            <a href="operador.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="horarios.html"><i class="fas fa-clock"></i> Horarios de los clientes</a>
+            <a href="envios.html"><i class="fas fa-truck"></i> Programación de envíos</a>
+            <a href="proveedores.html"><i class="fas fa-industry"></i> Proveedores</a>
+        </nav>
+        <!-- Barra de búsqueda -->
+        <input type="text" class="search-bar" placeholder="Buscar...">
+    </header>
+
+    <div class="hero-section">
+        <h1>Bienvenido, Operador</h1>
+        <p>En este panel podrás gestionar los horarios de los clientes, programar los envíos y administrar los proveedores. ¡Todo a tu alcance!</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Prometeo - <a href="#terminos">Términos y Condiciones</a></p>
+    </footer>
+
+</body>
+</html>

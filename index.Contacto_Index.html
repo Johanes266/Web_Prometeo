@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Inversiones Prometeo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        /* General */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url(Diseño\ sin\ título\ \(28\).png) no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+
+        header {
+            background: rgba(170, 9, 9, 0.8);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a i {
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #ffdbdb;
+            transform: scale(1.05);
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .search-container input[type="text"] {
+            padding: 6px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 6px 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            background-color: #9b0d0d;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-container button:hover {
+            background-color: #830808;
+        }
+
+       
+        .contact-section {
+            background: rgba(116, 115, 115, 0.7);
+            padding: 30px 15px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 1000px;
+            color: white;
+        }
+
+        .contact-section h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .contact-section p {
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .contact-form {
+            max-width: 320px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 8px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form textarea {
+            resize: none;
+        }
+
+        .contact-form button {
+            background: #9b0d0d;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #830808;
+            transform: scale(1.05);
+        }
+
+        .contact-info {
+            max-width: 320px;
+            color: white;
+            text-align: left;
+        }
+
+        .contact-info p {
+            font-size: 14px;
+            margin: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info i {
+            font-size: 16px;
+        }
+
+        .social-media {
+            margin-top: 15px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .social-media a {
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-media a:hover {
+            color: #ffdbdb;
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: rgba(170, 9, 9, 0.8);
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 30px;
+        }
+
+        .recaptcha-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">PROMETEO</div>
+        <nav>
+            <a href="#"><i class="fas fa-home"></i> Inicio</a>
+            <a href="#"><i class="fas fa-briefcase"></i> Servicios</a>
+            <a href="#"><i class="fas fa-users"></i> Sobre Nosotros</a>
+            <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+        </nav>
+        <div class="search-container">
+            <input type="text" placeholder="Buscar...">
+            <button>Buscar</button>
+        </div>
+    </header>
+
+    <!-- Sección de contacto -->
+    <div class="contact-section" id="contacto">
+        <h2>Ponte en Contacto</h2>
+        <p>Estamos aquí para ayudarte. Completa el formulario o utiliza nuestras redes sociales para contactarnos.</p>
+        <div class="contact-container">
+            <form class="contact-form">
+                <input type="text" placeholder="Nombre completo" required>
+                <input type="email" placeholder="Correo electrónico" required>
+                <textarea placeholder="Escribe tu mensaje aquí..." rows="5" required></textarea>
+                <div class="recaptcha-container">
+                    <div class="g-recaptcha" data-sitekey="tu_clave_del_site"></div>
+                </div>
+                <button type="submit">Enviar Mensaje</button>
+            </form>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> Dirección: Av. Central, Ciudad XYZ</p>
+                <p><i class="fas fa-phone"></i> Teléfono: +123 456 7890</p>
+                <p><i class="fas fa-envelope"></i> Correo: contacto@prometeo.com</p>
+                <div class="social-media">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de derechos reservados -->
+    <footer>
+        <p>&copy; 2024 Inversiones Prometeo. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
